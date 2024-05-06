@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkbock</title>
+  </head>
+  <style>
+    html {
+      box-sizing: border-box;
+      background-color: purple;
+    }
+    .lists {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: antiquewhite;
+      font-size: 20px;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      border-bottom: 1px solid azure;
+    }
+    p {
+      border-left: 1px solid burlywood;
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3ms;
+    }
+    input:checked + p {
+      background: #f9f9f9;
+      text-decoration: line-through;
+    }
+  </style>
+  <body>
+    <div
+      style="
+        text-align: center;
+        font-size: 30px;
+        color: blueviolet;
+        margin-top: 50px;
+      "
+    >
+      Choose the ones you are yet to use
+    </div>
+    <div class="lists">
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know HTML</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know CSS</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Javascript</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know React</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know React Native</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Node</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Express</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Sequelize</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Sequelize-cli</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Mongodb</p>
+      </div>
+
+      <div class="list">
+        <input type="checkbox" />
+        <p>I don't know Mysql</p>
+      </div>
+    </div>
+
+    <script>
+      const checkboxes = document.querySelectorAll(
+        '.list input[type="checkbox"]'
+      );
+
+      let lastChecked;
+
+      function handleCheck(e) {
+        // Check if they had the shift key down
+        // AND check that they are checking it
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+          console.log(e.shiftKey);
+          // go ahead and do what we please
+          // loop over every single checkbox
+          checkboxes.forEach((checkbox) => {
+            if (checkbox === this || checkbox === lastChecked) {
+              inBetween = !inBetween;
+              console.log("Starting to check them in between!");
+            }
+
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+
+        lastChecked = this;
+      }
+
+      checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("click", handleCheck)
+      );
+    </script>
+  </body>
+</html>
